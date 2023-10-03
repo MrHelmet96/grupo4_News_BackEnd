@@ -1,0 +1,11 @@
+{
+    "database": {
+        "host": "localhost",
+        "user": "root",
+        "password": "1234admin",
+        "database": "grupo4_noticias_DB"
+    },
+    "server": {
+        "port": 8080
+    }
+}

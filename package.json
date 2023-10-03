@@ -1,0 +1,33 @@
+{
+  "name": "grupo4_noticias",
+  "version": "1.0.0",
+  "description": "Este es un trabajo integrador final para el curso de Desarrollo Web Fullstack de Silicon Misiones (comisión A). En este repositorio se almacena el código fuente para la creación de una web de noticias ficticia llamada \"grupo 4\".",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrHelmet96/grupo4_noticias.git"
+  },
+  "keywords": [
+    "#React",
+    "#JavaScript",
+    "#NodeJs",
+    "#HTML",
+    "#Bootstrap"
+  ],
+  "author": "Casco, Alejandro M.; Rivas, Pablo G.; Falicoff, Natasha y Alvarez, Emiliano.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrHelmet96/grupo4_noticias/issues"
+  },
+  "homepage": "https://github.com/MrHelmet96/grupo4_noticias#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.1",
+    "nodemon": "^3.0.1",
+    "rootpath": "^0.1.2"
+  }
+}
