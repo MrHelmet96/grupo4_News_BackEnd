@@ -27,7 +27,7 @@ var persons_db = {};
 //Función create
 persons_db.create = function (datos, funCallback) {
     consulta = "INSERT INTO persons (name,surname,address,phone_number) VALUES (?,?,?,?);";
-    params = [datos.name,datos.surname,datos.adress,datos.phone_number];
+    params = [datos.name,datos.surname,datos.address,datos.phone_number];
 
     connection.query(consulta, params, (err, rows) => {
         if (err) {
@@ -86,10 +86,10 @@ persons_db.borrar = function (person_id, funCallback) {
 }
 
 
-//función put (en revision)
-persons_db.update = function (datos, person_id, funCallback) {
-    consulta = "UPDATE persons SET name = ?, surname = ? WHERE person_id = ?";
-    params = [ datos.name, datos.surname, datos.phone_number, person_id];
+//función put 
+persons_db.update = function (datos,person_id, funCallback) {
+    consulta = "UPDATE persons SET name = ?, surname = ?, address = ?, phone_number = ? WHERE person_id = ?";
+    params = [ datos.name, datos.surname,datos.address,datos.phone_number, person_id];
 
     connection.query(consulta, params, (err, result) => {
 
