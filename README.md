@@ -6,3 +6,12 @@ Este es un trabajo integrador final para el curso de *Desarrollo Web Fullstack* 
 * Pablo Rivas
 * Natasha Falicoff
 * Emiliano Alvarez
+
+*FUNCIONAMIENTO DEL PROYECTO BACKEND:*
+### Para que el proyecto backend funcione correctamente, luego de clonar el proyecto, es necesario instalar las siguientes librerías en la terminal de la consola con los comandos:
+npm install express
+npm install mysql2
+npm install rootpath
+npm install morgan
+npm install bcrypt
+npm install jsonwebtoken

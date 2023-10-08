@@ -21,13 +21,25 @@ morgan(':method :url :status :res[content-length] - :response-time ms');
 
 // Importa la configuración desde el archivo 'config.json' para levantar el servidor.
  const configuracion = require("./backend/config.json");
-
-
+ 
  // Importa el controlador de personas.
 const personsController = require("./backend/controller/personsController.js");
 
+//importa el controlador de usuarios.
+const usersController = require("./backend/controller/usersController.js");
+
+//importa el controlador de roles.
+const rolesController = require ("./backend/controller/rolesController.js");
+
+//importa el controlador de seguridad
+//const securityController = require("controller/securityController.js");
+
+
 // Define una ruta '/persons' y asigna el controlador 'personsController' a ella.
 app.use('/persons', personsController);
+app.use('/users', usersController);
+app.use('/roles',rolesController);
+//app.use('/security', securityController.app);
 
 
 // Inicia el servidor en el puerto 8080 y maneja posibles errores.
@@ -40,8 +52,6 @@ app.listen(8080, (err) => {
 });
 
 
-
-//pruebaa
 
 
 

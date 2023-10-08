@@ -9,19 +9,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Importa el módulo 'persons_db' que contiene las funciones relacionadas con las personas.
-var persons_db = require("../model/persons.js")
 
-// Definición de rutas de escucha (endpoints) disponibles para PERSONAS.
+// Importa el módulo 'persons_db' que contiene las funciones relacionadas con los usuarios.
+var users_db = require("../model/users.js")
+
+// Definición de rutas de escucha (endpoints) disponibles para usuarios.
 app.post('/', crear);
 app.get('/', getAll);
-app.delete('/:person_id', borrar);
-app.put('/:person_id', actualizar);
+app.delete('/:user_id', borrar);
 
 //función para manejar la solicitud POST
 function crear(req, res) {
-    let persons = req.body;
-    persons_db.create(persons, (err, resultado) => {
+    let users = req.body;
+    users_db.create(users, (err, resultado) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -30,10 +30,9 @@ function crear(req, res) {
     });
 }
 
-
 // Función para manejar la solicitud GET
 function getAll(req, res) {
-    persons_db.getAll(function (err, resultado) {
+    users_db.getAll(function (err, resultado) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -44,8 +43,8 @@ function getAll(req, res) {
 
 //función para manejar la solicitud DELETE
 function borrar(req, res) {
-    let id_persona_a_eliminar = req.params.person_id;
-    persons_db.borrar(id_persona_a_eliminar, (err, result_model) => {
+    let id_usuario_a_eliminar = req.params.user_id;
+    users_db.borrar(id_usuario_a_eliminar, (err, result_model) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -54,20 +53,6 @@ function borrar(req, res) {
             } else {
                 res.send(result_model.message);
             }
-        }
-    });
-}
-
-
-//función para manejar la solicitud PUT
-function actualizar(req, res) {
-    let persons = req.body;
-    let person_id = req.params.person_id;
-    persons_db.update(persons,person_id , (err, resultado) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send(resultado);
         }
     });
 }
