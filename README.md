@@ -15,3 +15,6 @@ npm install rootpath
 npm install morgan
 npm install bcrypt
 npm install jsonwebtoken
+
+*Además, es necesario crear localmente la base de datos:*
+## Teniendo en cuenta de modificar los campos del archivo /config.json para que coincidan con la base de datos del repositorio local

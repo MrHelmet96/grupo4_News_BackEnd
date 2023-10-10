@@ -13,15 +13,28 @@ app.use(express.urlencoded({ extended: true }));
 // Importa el módulo 'persons_db' que contiene las funciones relacionadas con los usuarios.
 var users_db = require("../model/users.js")
 
-// Definición de rutas de escucha (endpoints) disponibles para usuarios.
-app.post('/', crear);
-app.get('/', getAll);
-app.delete('/:user_id', borrar);
+const securityController = require("./securityController");
 
-//función para manejar la solicitud POST
-function crear(req, res) {
-    let users = req.body;
-    users_db.create(users, (err, resultado) => {
+// Definición de rutas de escucha (endpoints) disponibles para usuarios.
+app.get('/', securityController.verificarToken, getAll);
+app.post('/', securityController.verificarToken, createUser);
+app.delete('/:user_id', borrar);
+app.get('/', getAll);
+
+
+function getAll(req, res) {
+    users_db.getAll((err, resultado) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.json(resultado);
+        }
+    });
+}
+
+function createUser(req, res) {
+    let user = req.body;
+    users_db.create(user, (err, resultado) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -30,16 +43,8 @@ function crear(req, res) {
     });
 }
 
-// Función para manejar la solicitud GET
-function getAll(req, res) {
-    users_db.getAll(function (err, resultado) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.json(resultado);
-        }
-    });
-}
+
+
 
 //función para manejar la solicitud DELETE
 function borrar(req, res) {

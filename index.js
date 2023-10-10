@@ -32,14 +32,29 @@ const usersController = require("./backend/controller/usersController.js");
 const rolesController = require ("./backend/controller/rolesController.js");
 
 //importa el controlador de seguridad
-//const securityController = require("controller/securityController.js");
+const securityController = require("./backend/controller/securityController.js");
 
+ // Importa el controlador de imágenes
+ const imagesController = require("./backend/controller/imagesController.js");
 
-// Define una ruta '/persons' y asigna el controlador 'personsController' a ella.
+ //Importa el controlador de artículos
+ const articlesController = require("./backend/controller/articlesController");
+
+  //Importa el controlador de categorías
+  const categoriesController = require("./backend/controller/categoriesController");
+
+    //Importa el controlador de comentarios
+    const commentsController = require("./backend/controller/commentsController");
+
+// Define una ruta para cada tabla y asigna el controlador correspondiente a ella.
 app.use('/persons', personsController);
 app.use('/users', usersController);
 app.use('/roles',rolesController);
-//app.use('/security', securityController.app);
+app.use('/security',securityController.app);
+app.use('/images',imagesController);
+app.use('/articles',articlesController);
+app.use('/categories',categoriesController);
+app.use('/comments',commentsController);
 
 
 // Inicia el servidor en el puerto 8080 y maneja posibles errores.
