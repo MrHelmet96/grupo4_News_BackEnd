@@ -1,17 +1,22 @@
+// Importa el módulo Express y crea una instancia de la aplicación.
 const express = require('express');
 const app = express();
 
+// Configura el middleware para el manejo de datos JSON y datos codificados en URL.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Importa el módulo de base de datos para las categorías.
 const categories_db = require('../model/categories');
 
+// Rutas y funciones para gestionar las categorías.
 app.post('/', crearCategoria);
 app.get('/', getAllCategorias);
 app.get('/:category_id', getCategoriaPorId);
 app.delete('/:category_id', borrarCategoria);
 app.put('/:category_id', actualizarCategoria);
 
+// Ruta POST para crear una nueva categoría.
 function crearCategoria(req, res) {
     const nuevaCategoria = {
         category_name: req.body.category_name
@@ -33,6 +38,7 @@ function crearCategoria(req, res) {
     });
 }
 
+// Ruta GET para obtener todas las categorías.
 function getAllCategorias(req, res) {
     categories_db.getAll((error, resultado) => {
         if (error) {
@@ -47,6 +53,7 @@ function getAllCategorias(req, res) {
     });
 }
 
+// Ruta GET para obtener una categoría por su ID.
 function getCategoriaPorId(req, res) {
     const category_id = req.params.category_id;
 
@@ -68,6 +75,7 @@ function getCategoriaPorId(req, res) {
     });
 }
 
+// Ruta DELETE para eliminar una categoría por su ID.
 function borrarCategoria(req, res) {
     const category_id = req.params.category_id;
 
@@ -92,6 +100,7 @@ function borrarCategoria(req, res) {
     });
 }
 
+// Ruta PUT para actualizar una categoría por su ID.
 function actualizarCategoria(req, res) {
     const category_id = req.params.category_id;
     const datosActualizados = {
@@ -119,4 +128,5 @@ function actualizarCategoria(req, res) {
     });
 }
 
+// Exporta la aplicación para su uso en otros archivos.
 module.exports = app;

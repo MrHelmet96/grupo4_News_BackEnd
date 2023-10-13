@@ -1,6 +1,10 @@
+// Importa la biblioteca 'mysql2' para interactuar con la base de datos MySQL.
 const mysql = require('mysql2');
+
+// Importa la configuración de la base de datos desde el archivo 'config.json'
 const configuracion = require("../../backend/config.json");
 
+// Crea una conexión a la base de datos utilizando la configuración definida en 'config.json'.
 const connection = mysql.createConnection(configuracion.database);
 
 // Establece la conexión a la base de datos y maneja errores si los hay.
@@ -12,9 +16,11 @@ connection.connect((err) => {
     }
 });
 
-
+// Objeto 'articles_db' para gestionar las operaciones de la base de datos relacionadas con artículos.
 const articles_db = {};
 
+
+// Función para crear un nuevo artículo en la base de datos.
 articles_db.create = function (datos, funCallback) {
     const consulta = "INSERT INTO articles (title, publication_date, content, user_id, category_id) VALUES (?, ?, ?, ?, ?);";
     const params = [datos.title, datos.publication_date, datos.content, datos.user_id, datos.category_id];
@@ -34,6 +40,7 @@ articles_db.create = function (datos, funCallback) {
     });
 }
 
+// Función para obtener todos los artículos de la base de datos.
 articles_db.getAll = function (funCallback) {
     const consulta = 'SELECT * FROM articles';
     connection.query(consulta, function (err, rows) {
@@ -48,6 +55,7 @@ articles_db.getAll = function (funCallback) {
     });
 }
 
+// Función para obtener un artículo por su ID.
 articles_db.getById = function (article_id, funCallback) {
     const consulta = 'SELECT * FROM articles WHERE article_id = ?';
     connection.query(consulta, [article_id], function (err, rows) {
@@ -64,6 +72,7 @@ articles_db.getById = function (article_id, funCallback) {
     });
 }
 
+// Función para eliminar un artículo por su ID.
 articles_db.delete = function (article_id, funCallback) {
     const consulta = "DELETE FROM articles WHERE article_id = ?";
     connection.query(consulta, [article_id], (err, result) => {
@@ -81,6 +90,7 @@ articles_db.delete = function (article_id, funCallback) {
     });
 }
 
+// Función para actualizar un artículo por su ID.
 articles_db.update = function (datos, article_id, funCallback) {
     const consulta = "UPDATE articles SET title = ?, publication_date = ?, content = ?, user_id = ?, category_id = ? WHERE article_id = ?";
     const params = [datos.title, datos.publication_date, datos.content, datos.user_id, datos.category_id, article_id];
@@ -105,4 +115,5 @@ articles_db.update = function (datos, article_id, funCallback) {
     });
 }
 
+// Exporta el objeto 'articles_db' para su uso en otros archivos.
 module.exports = articles_db;

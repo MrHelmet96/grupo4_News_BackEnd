@@ -1,8 +1,12 @@
-//configuraciones iniciales
+// Importa el módulo 'rootpath' para configuraciones iniciales.
 require('rootpath')();
 
+// Importa los módulos 'mysql2' y 'bcrypt' para la gestión de base de datos y contraseñas.
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
+
+
+// Importa la configuración del archivo 'config.json'.
 const configuracion = require("../../backend/config.json")
 
 //inicializa la conexion entre el servidor y la base de datos
@@ -19,16 +23,18 @@ var users_db = {};
 
 
 
-//Función create (incompleta por el momento, sigo trabajando en el login - security)
+// Función create para registrar nuevos usuarios.
 users_db.create = function (users, funcallback) {
-    
+// Cifra la contraseña del usuario.
     let claveCifrada = bcrypt.hashSync(users.password, 10);
-console.log(claveCifrada) //agregamos este console
-    consulta = "INSERT INTO users (user_id,email, password, person_id, rol_id) VALUES (?,?,?,?,?);";
-    params = [users.email, claveCifrada,users.password, users.person_id, users.rol_id]; //cambiamos persons por person_id
+// Define la consulta SQL para insertar un nuevo usuario
+    consulta = "INSERT INTO users (email, password, person_id,rol_id) VALUES (?,?,?,?);";
+// Define los parámetros que se deben insertar en la consulta.
+    params = [users.email, claveCifrada,users.person_id, users.rol_id, users.persons, users.roles]; 
+ // Ejecuta la consulta en la base de datos.
     connection.query(consulta, params, (err, detail_bd) => {
         if (err) {
-
+// Si se produce un error, verifica si es un error de duplicado (correo electrónico duplicado).
             if (err.code == "ER_DUP_ENTRY") {
                 funcallback({
                     message: "el usuario ya fue registrado",
@@ -41,7 +47,7 @@ console.log(claveCifrada) //agregamos este console
                 });
             }
         } else {
-
+// Si no hay errores, se registra el nuevo usuario en la base de datos.
             funcallback(undefined, {
                 message: "su usuario para ingresar es " + users.email,
                 detalle: detail_bd
@@ -50,10 +56,10 @@ console.log(claveCifrada) //agregamos este console
     });
 }
 
-//función de login 
+// Función para buscar un usuario por su dirección de correo electrónico.
 users_db.findByEmail = function (email, funCallback) {
     var consulta = 'SELECT * FROM users WHERE email = ?';
-    connection.query(consulta, email, function (err, result) {
+    connection.query(consulta, email, function (err, result) { // En caso de error en la consulta.
         if (err) {
             funCallback(err);
             return;
@@ -74,14 +80,36 @@ users_db.findByEmail = function (email, funCallback) {
     });
 }
 
+// Función para actualizar un usuario por su ID.
+users_db.update = function (user_id, updatedUser, funCallback) {
+    const claveCifrada = bcrypt.hashSync(updatedUser.password, 10);
+    const consulta = "UPDATE users SET email = ?, password = ?, person_id = ?, rol_id = ? WHERE user_id = ?";
+    const params = [updatedUser.email, claveCifrada, updatedUser.person_id, updatedUser.rol_id, user_id];
+
+    connection.query(consulta, params, (err, result) => {
+        if (err) {
+            funCallback({ message: err.code, detail: err }); // En caso de error en la actualización.
+        } else {
+            if (result.affectedRows == 0) {
+                funCallback(undefined, {
+                    message: "No se encontró un usuario con el ID proporcionado",
+                    detail: result
+                });
+            } else {
+                funCallback(undefined, { message: "Usuario actualizado", detail: result });
+            }
+        }
+    });
+}
 
 
-//función DELETE
+
+// Función para eliminar un usuario por su ID.
 users_db.borrar = function (user_id, funCallback) {
     consulta = "DELETE FROM users WHERE user_id = ?";
     connection.query(consulta, user_id, (err, result) => {
         if (err) {
-            funCallback({ menssage: err.code, detail: err });
+            funCallback({ menssage: err.code, detail: err }); // En caso de error en la eliminación.
         } else {
             if (result.affectedRows == 0) {
                 funCallback(undefined,
@@ -90,7 +118,7 @@ users_db.borrar = function (user_id, funCallback) {
                         detail: result
                     });
             } else {
-                funCallback(undefined, { message: "usuario eliminado", detail: result });
+                funCallback(undefined, { message: "usuario eliminado", detail: result }); // Si se elimina con éxito.
             }
         }
     });

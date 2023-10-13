@@ -1,17 +1,25 @@
+// Importa el módulo Express y crea una instancia de la aplicación.
 const express = require('express');
 const app = express();
 
+// Configura el middleware para el manejo de datos JSON y datos codificados en URL.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+// Importa el módulo de base de datos para los artículos.
 const articles_db = require('../model/articles');
 
+
+// Definición de rutas y funciones para gestionar los artículos.
 app.post('/', crearArticulo);
 app.get('/', getAllArticulos);
 app.get('/:article_id', getArticuloPorId);
 app.delete('/:article_id', borrarArticulo);
 app.put('/:article_id', actualizarArticulo);
 
+
+// Ruta POST para crear un nuevo artículo.
 function crearArticulo(req, res) {
     const nuevoArticulo = {
         title: req.body.title,
@@ -37,6 +45,7 @@ function crearArticulo(req, res) {
     });
 }
 
+// Ruta GET para obtener todos los artículos.
 function getAllArticulos(req, res) {
     articles_db.getAll((error, resultado) => {
         if (error) {
@@ -51,6 +60,7 @@ function getAllArticulos(req, res) {
     });
 }
 
+// Ruta GET para obtener un artículo por su ID.
 function getArticuloPorId(req, res) {
     const article_id = req.params.article_id;
 
@@ -72,6 +82,7 @@ function getArticuloPorId(req, res) {
     });
 }
 
+// Ruta DELETE para eliminar un artículo por su ID.
 function borrarArticulo(req, res) {
     const article_id = req.params.article_id;
 
@@ -96,6 +107,7 @@ function borrarArticulo(req, res) {
     });
 }
 
+// Ruta PUT para actualizar un artículo por su ID.
 function actualizarArticulo(req, res) {
     const article_id = req.params.article_id;
     const datosActualizados = {
@@ -105,7 +117,6 @@ function actualizarArticulo(req, res) {
         user_id: req.body.user_id,
         category_id: req.body.category_id
     };
-
     articles_db.update(datosActualizados, article_id, (error, resultado) => {
         if (error) {
             res.status(500).json({
@@ -127,4 +138,6 @@ function actualizarArticulo(req, res) {
     });
 }
 
+
+// Exporta la aplicación para su uso en otros archivos.
 module.exports = app;

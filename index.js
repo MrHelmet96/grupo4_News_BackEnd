@@ -20,9 +20,9 @@ app.use(morgan('tiny'));
 morgan(':method :url :status :res[content-length] - :response-time ms');
 
 // Importa la configuración desde el archivo 'config.json' para levantar el servidor.
- const configuracion = require("./backend/config.json");
+const configuracion = require("./backend/config.json");
  
- // Importa el controlador de personas.
+// Importa el controlador de personas.
 const personsController = require("./backend/controller/personsController.js");
 
 //importa el controlador de usuarios.
@@ -35,18 +35,21 @@ const rolesController = require ("./backend/controller/rolesController.js");
 const securityController = require("./backend/controller/securityController.js");
 
  // Importa el controlador de imágenes
- const imagesController = require("./backend/controller/imagesController.js");
+const imagesController = require("./backend/controller/imagesController.js");
 
  //Importa el controlador de artículos
- const articlesController = require("./backend/controller/articlesController");
+const articlesController = require("./backend/controller/articlesController");
 
-  //Importa el controlador de categorías
-  const categoriesController = require("./backend/controller/categoriesController");
+//Importa el controlador de categorías
+const categoriesController = require("./backend/controller/categoriesController");
 
-    //Importa el controlador de comentarios
-    const commentsController = require("./backend/controller/commentsController");
+//Importa el controlador de comentarios
+const commentsController = require("./backend/controller/commentsController");
+
+
 
 // Define una ruta para cada tabla y asigna el controlador correspondiente a ella.
+
 app.use('/persons', personsController);
 app.use('/users', usersController);
 app.use('/roles',rolesController);
@@ -55,6 +58,8 @@ app.use('/images',imagesController);
 app.use('/articles',articlesController);
 app.use('/categories',categoriesController);
 app.use('/comments',commentsController);
+
+
 
 
 // Inicia el servidor en el puerto 8080 y maneja posibles errores.

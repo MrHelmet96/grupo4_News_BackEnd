@@ -1,17 +1,22 @@
+// Importa el módulo Express y crea una instancia de la aplicación.
 const express = require('express');
 const app = express();
 
+// Configura el middleware para el manejo de datos JSON y datos codificados en URL.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Importa el módulo de base de datos para los comentarios.
 const comments_db = require('../model/comments');
 
+// Rutas y funciones para gestionar los comentarios.
 app.post('/', crearComentario);
 app.get('/', getAllComentarios);
 app.get('/:comment_id', getComentarioPorId);
 app.delete('/:comment_id', borrarComentario);
 app.put('/:comment_id', actualizarComentario);
 
+// Ruta POST para crear un nuevo comentario.
 function crearComentario(req, res) {
     const nuevoComentario = {
         content: req.body.content,
@@ -36,6 +41,7 @@ function crearComentario(req, res) {
     });
 }
 
+// Ruta GET para obtener todos los comentarios.
 function getAllComentarios(req, res) {
     comments_db.getAll((error, resultado) => {
         if (error) {
@@ -50,6 +56,7 @@ function getAllComentarios(req, res) {
     });
 }
 
+// Ruta GET para obtener un comentario por su ID.
 function getComentarioPorId(req, res) {
     const comment_id = req.params.comment_id;
 
@@ -71,6 +78,7 @@ function getComentarioPorId(req, res) {
     });
 }
 
+// Ruta DELETE para eliminar un comentario por su ID.
 function borrarComentario(req, res) {
     const comment_id = req.params.comment_id;
 
@@ -95,6 +103,7 @@ function borrarComentario(req, res) {
     });
 }
 
+// Ruta PUT para actualizar un comentario por su ID.
 function actualizarComentario(req, res) {
     const comment_id = req.params.comment_id;
     const datosActualizados = {
@@ -125,4 +134,5 @@ function actualizarComentario(req, res) {
     });
 }
 
+// Exporta la aplicación para su uso en otros archivos.
 module.exports = app;
