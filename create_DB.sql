@@ -39,6 +39,14 @@ CREATE TABLE categories (
     category_name VARCHAR(60)
 );
 
+-- Insertar las categorías en la tabla 'categories'
+INSERT INTO categories (category_name) VALUES
+('sports'),
+('health'),
+('gastronomy'),
+('entertainment'),
+('politics and economy');
+
 -- Crear la tabla 'Articles' para almacenar información de los artículos
 CREATE TABLE articles (
     article_id INT AUTO_INCREMENT PRIMARY KEY,
