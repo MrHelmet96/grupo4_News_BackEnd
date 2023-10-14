@@ -7,8 +7,8 @@ Este repositorio contiene el código backend de un trabajo integrador final para
 * Natasha Falicoff
 * Emiliano Alvarez
 
-*FUNCIONAMIENTO DEL PROYECTO BACKEND:*
-### Para que el proyecto backend funcione correctamente, luego de clonar el proyecto, es necesario instalar las siguientes librerías en la terminal de la consola con los comandos:
+*FUNCIONAMIENTO DEL PROYECTO (BACKEND):*
+### Para que el backend del proyecto funcione correctamente, luego de clonar el proyecto, es necesario instalar las siguientes librerías en la terminal de la consola con los comandos:
 npm install express
 npm install mysql2
 npm install rootpath
@@ -16,6 +16,7 @@ npm install morgan
 npm install bcrypt
 npm install jsonwebtoken
 npm install cors
+npm install tar
 
 *Además, es necesario crear localmente la base de datos:*
 Teniendo en cuenta de modificar los campos del archivo /config.json para que coincidan con la base de datos del repositorio local
