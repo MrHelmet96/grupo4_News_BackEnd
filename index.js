@@ -9,7 +9,12 @@ const morgan = require('morgan');
 
 // Importa el módulo 'cors' para permitir solicitudes cruzadas entre dominios.
 var cors = require('cors')
-app.use(cors())
+
+//habilitación de el backend (api) para ser consumida desde el front.
+const freeUse =['http://localhost:3000'];
+app.use(cors({
+    origin:freeUse
+}))
 
 // Configura Express para analizar JSON y datos de formulario.
 app.use(express.json());
@@ -58,7 +63,6 @@ app.use('/images',imagesController);
 app.use('/articles',articlesController);
 app.use('/categories',categoriesController);
 app.use('/comments',commentsController);
-
 
 
 
