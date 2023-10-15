@@ -45,14 +45,16 @@ INSERT INTO categories (category_name) VALUES
 ('health'),
 ('gastronomy'),
 ('entertainment'),
-('politics and economy');
+('politics and economy'),
+('others');
 
 -- Crear la tabla 'Articles' para almacenar información de los artículos
 CREATE TABLE articles (
     article_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
+    subtitle VARCHAR(255),
     publication_date DATE,
-    content TEXT,
+    content MEDIUMTEXT,
     user_id INT,
     category_id INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
