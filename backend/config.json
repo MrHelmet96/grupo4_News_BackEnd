@@ -2,7 +2,7 @@
     "database": {
         "host": "127.0.0.1",
         "user": "root",
-        "password": "melmac24",
+        "password": "2605",
         "database": "grupo4_noticias_db"
     },
     "server": {
