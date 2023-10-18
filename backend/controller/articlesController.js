@@ -23,7 +23,7 @@ app.put('/:article_id', actualizarArticulo);
 function crearArticulo(req, res) {
     const nuevoArticulo = {
         title: req.body.title,
-        subtitle: req.body.subtitletitle,
+        subtitle: req.body.subtitle,
         publication_date: req.body.publication_date,
         content: req.body.content,
         user_id: req.body.user_id,
