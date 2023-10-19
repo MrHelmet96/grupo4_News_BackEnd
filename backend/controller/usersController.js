@@ -17,8 +17,9 @@ var users_db = require("../model/users.js")
 const securityController = require("./securityController");
 
 // Definición de rutas de escucha (endpoints) disponibles para usuarios.
+
 app.get('/', securityController.verificarToken, getAll);
-app.post('/', securityController.verificarToken, createUser);
+app.post('/', createUser);
 app.put('/:user_id', updateUser);
 app.delete('/:user_id', borrar);
 

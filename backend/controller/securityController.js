@@ -53,19 +53,6 @@ function login(req, res) {
 
 // Función para verificar el token en las rutas protegidas.
 function verificarToken(req, res, next) {
-  // Este código que proporcionamos a continuación hay que descomentar para hardcodear el registro de los 3 primeros usuarios
-  // para poder tener un usuario con cada rol definido y poder hacer las pruebas correspondientes.
-
-  // if(req.body){
-  //     next();
-  // }
-  // else{
-  //     res.send({
-  //      message: "error al crear usuario"
-  //      });
-  // }
-
-  // Al momento de hardcodear el registro de los 3 suarios es necesario comentar las siguientes líneas de código.
 
   if (req.headers["Authorization"]) {
     try {

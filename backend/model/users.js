@@ -80,6 +80,22 @@ users_db.findByEmail = function (email, funCallback) {
     });
 }
 
+// Función getAll
+users_db.getAll = function (funCallback) {
+    var consulta = 'SELECT * FROM users';
+    connection.query(consulta, function (err, rows) {
+        if (err) {
+            funCallback({
+                message: "ha ocurrido un error inesperado al buscar los usuarios",
+                detail: err
+            });
+        } else {
+            funCallback(undefined, rows);
+        }
+    });
+}
+
+
 // Función para actualizar un usuario por su ID.
 users_db.update = function (user_id, updatedUser, funCallback) {
     const claveCifrada = bcrypt.hashSync(updatedUser.password, 10);

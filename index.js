@@ -11,7 +11,7 @@ const morgan = require('morgan');
 var cors = require('cors')
 
 //habilitación de el backend (api) para ser consumida desde el front.
-const freeUse =['http://localhost:3000'];
+const freeUse =['http://localhost:3001','http://localhost:3000'];
 app.use(cors({
     origin:freeUse
 }))
