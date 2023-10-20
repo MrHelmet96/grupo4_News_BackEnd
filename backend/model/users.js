@@ -26,17 +26,17 @@ var users_db = {};
 // Función create para registrar nuevos usuarios.
 users_db.create = function (users, funcallback) {
 // Cifra la contraseña del usuario.
-    let claveCifrada = bcrypt.hashSync(users.password, 10);
+    let claveCifrada = bcrypt.hashSync(users.clave, 10);
 // Define la consulta SQL para insertar un nuevo usuario
-    consulta = "INSERT INTO users (email, password, person_id,rol_id) VALUES (?,?,?,?);";
+    consulta = "INSERT INTO users (name,surname,email,password) VALUES (?,?,?,?);";
 // Define los parámetros que se deben insertar en la consulta.
-    params = [users.email, claveCifrada,users.person_id, users.rol_id, users.persons, users.roles]; 
+    params = [users.name,users.surname,users.mail, claveCifrada, users.persons]; 
  // Ejecuta la consulta en la base de datos.
     connection.query(consulta, params, (err, detail_bd) => {
         if (err) {
 // Si se produce un error, verifica si es un error de duplicado (correo electrónico duplicado).
             if (err.code == "ER_DUP_ENTRY") {
-                funcallback({
+                funcallback({   
                     message: "el usuario ya fue registrado",
                     detalle: err
                 });

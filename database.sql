@@ -25,11 +25,11 @@ INSERT INTO roles (role_name) VALUES ('user'), ('editor'), ('administrator');
 -- Crear la tabla 'Users' para almacenar información de los usuarios
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(60),
+    surname VARCHAR(60),
     email VARCHAR(60),
     password VARCHAR(80),
-    person_id INT,
     rol_id INT,
-    FOREIGN KEY (person_id) REFERENCES persons(person_id),
     FOREIGN KEY (rol_id) REFERENCES roles(role_id)
 );
 
