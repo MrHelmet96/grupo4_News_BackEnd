@@ -27,7 +27,7 @@ CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(60),
     surname VARCHAR(60),
-    email VARCHAR(60),
+    email VARCHAR(60)not null unique,
     password VARCHAR(80),
     rol_id INT,
     FOREIGN KEY (rol_id) REFERENCES roles(role_id)
