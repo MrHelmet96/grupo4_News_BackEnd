@@ -13,7 +13,7 @@ connection.connect((err) => {
     if (err) {
         console.log(err);
     } else {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada a imagenes");
     }
 });
 
