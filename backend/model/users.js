@@ -57,9 +57,9 @@ users_db.create = function (users, funcallback) {
 }
 
 // Función para buscar un usuario por su dirección de correo electrónico.
-users_db.findByEmail = function (email, funCallback) {
+users_db.findByEmail = function (mail, funCallback) {
     var consulta = 'SELECT * FROM users WHERE email = ?';
-    connection.query(consulta, email, function (err, result) { // En caso de error en la consulta.
+    connection.query(consulta, mail, function (err, result) { // En caso de error en la consulta.
         if (err) {
             funCallback(err);
             return;

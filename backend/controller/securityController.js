@@ -17,9 +17,9 @@ app.post("/login", login);
 
 // Función de autenticación para la ruta POST '/login'.
 function login(req, res) {
-  const { email, password } = req.body;
+  const { mail, password } = req.body;
   // Busca un usuario en la base de datos por su dirección de correo electrónico.
-  users_db.findByEmail(email, (err, result) => {
+  users_db.findByEmail(mail, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -27,7 +27,7 @@ function login(req, res) {
       const iguales = bcrypt.compareSync(password, result.detail.password);
       if (iguales) {
         let user = {
-          email: result.detail.email,
+          mail: result.detail.mail,
         };
         // Genera un token JWT para el usuario autenticado.
         jwt.sign(user, "Grupo4Sectret", { expiresIn: "365d" }, (err, token) => {
