@@ -28,9 +28,9 @@ users_db.create = function (users, funcallback) {
 // Cifra la contraseña del usuario.
     let claveCifrada = bcrypt.hashSync(users.clave, 10);
 // Define la consulta SQL para insertar un nuevo usuario
-    consulta = "INSERT INTO users (name,surname,email,password) VALUES (?,?,?,?);";
+    consulta = "INSERT INTO users (name,surname,email,password,rol_id) VALUES (?,?,?,?,?);";
 // Define los parámetros que se deben insertar en la consulta.
-    params = [users.name,users.surname,users.email, claveCifrada, users.persons]; 
+    params = [users.name,users.surname,users.email, claveCifrada,1, users.persons]; 
  // Ejecuta la consulta en la base de datos.
     connection.query(consulta, params, (err, detail_bd) => {
         if (err) {
