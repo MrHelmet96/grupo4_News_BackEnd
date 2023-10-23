@@ -15,7 +15,7 @@ CREATE TABLE persons (
 
 -- Crear la tabla 'Roles' para almacenar los roles disponibles
 CREATE TABLE roles (
-    role_id INT AUTO_INCREMENT PRIMARY KEY,
+    rol_id INT AUTO_INCREMENT PRIMARY KEY,
     role_name VARCHAR(50)
 );
 
@@ -30,7 +30,7 @@ CREATE TABLE users (
     email VARCHAR(60)not null unique,
     password VARCHAR(80),
     rol_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles(role_id)
+    FOREIGN KEY (rol_id) REFERENCES roles(rol_id)
 );
 
 -- Crear la tabla 'Categories' para almacenar las categorías de los artículos

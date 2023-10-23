@@ -11,7 +11,7 @@ const roles_db = require('../model/roles');
 
 // Rutas y funciones para gestionar los roles.
 app.get('/', getAllRoles);
-app.put('/:role_id', actualizarRol);
+app.put('/:rol_id', actualizarRol);
 
 // Ruta GET para obtener todos los roles.
 function getAllRoles(req, res) {
@@ -30,12 +30,12 @@ function getAllRoles(req, res) {
 
 // Ruta PUT para actualizar un rol por su ID.
 function actualizarRol(req, res) {
-    const role_id = req.params.role_id;
+    const rol_id = req.params.rol_id;
     const datosActualizados = {
         role_name: req.body.role_name
     };
 
-    roles_db.update(datosActualizados, role_id, (error, resultado) => {
+    roles_db.update(datosActualizados, rol_id, (error, resultado) => {
         if (error) {
             res.status(500).json({
                 error: true,
