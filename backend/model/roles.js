@@ -35,9 +35,9 @@ roles_db.getAll = function (funCallback) {
 }
 
 // Función para actualizar un rol por su ID.
-roles_db.update = function (datos, role_id, funCallback) {
-    // Verificar si el role_id es de un rol predefinido (1, 2 o 3) y si lo es, no se permite modificarlo.
-    if (role_id >= 1 && role_id <= 3) {
+roles_db.update = function (datos, rol_id, funCallback) {
+    // Verificar si el rol_id es de un rol predefinido (1, 2 o 3) y si lo es, no se permite modificarlo.
+    if (rol_id >= 1 && rol_id <= 3) {
         funCallback({
             message: "No se permite la modificación de roles predefinidos",
             detail: null
@@ -45,8 +45,8 @@ roles_db.update = function (datos, role_id, funCallback) {
         return;
     }
 
-    const consulta = "UPDATE roles SET role_name = ? WHERE role_id = ?";
-    const params = [datos.role_name, role_id];
+    const consulta = "UPDATE roles SET role_name = ? WHERE rol_id = ?";
+    const params = [datos.role_name, rol_id];
 
     connection.query(consulta, params, (err, result) => {
         if (err) {
@@ -61,7 +61,7 @@ roles_db.update = function (datos, role_id, funCallback) {
             });
         } else {
             funCallback(undefined, {
-                message: `Se actualizó el rol con ID ${role_id}`,
+                message: `Se actualizó el rol con ID ${rol_id}`,
                 detail: result
             });
         }
