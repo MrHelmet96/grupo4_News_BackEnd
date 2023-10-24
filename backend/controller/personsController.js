@@ -1,3 +1,5 @@
+//Este controlador no lo utilizamos por modificaciones en el proyecto
+
 // Importa el módulo 'rootpath' para resolver rutas de manera más sencilla.
 require('rootpath')();
 

@@ -1,3 +1,5 @@
+////Este modelo no lo utilizamos por modificaciones en el proyecto
+
 //configuraciones iniciales
 require('rootpath')();
 

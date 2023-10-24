@@ -1,3 +1,5 @@
+// Este modelo es para utilizar en la próxima etapa del proyecto:
+
 //configuraciones iniciales
 require('rootpath')();
 // Importa la biblioteca 'mysql2' para interactuar con la base de datos MySQL.

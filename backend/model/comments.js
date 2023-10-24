@@ -1,3 +1,6 @@
+// Este modelo es para utilizar en la próxima etapa del proyecto:
+
+
 // Importa la biblioteca 'mysql2' para interactuar con la base de datos MySQL.
 const mysql = require('mysql2');
 // Importa la configuración de la base de datos desde el archivo 'config.json'

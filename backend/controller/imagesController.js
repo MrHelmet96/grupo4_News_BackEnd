@@ -1,3 +1,6 @@
+//Este controlador es para utilizar en la próxima etapa del proyecto:
+
+
 // Importa el módulo 'express' para gestionar y lanzar servidores web.
 const express = require('express');
 const app = express();

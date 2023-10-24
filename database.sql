@@ -4,14 +4,6 @@ CREATE DATABASE grupo4_noticias_DB;
 -- Usar la base de datos recién creada
 USE grupo4_noticias_DB;
 
--- Crear la tabla 'Persons' para almacenar información de las personas
-CREATE TABLE persons (
-    person_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(60),
-    surname VARCHAR(60),
-    address VARCHAR(100),
-    phone_number VARCHAR(15)
-);
 
 -- Crear la tabla 'Roles' para almacenar los roles disponibles
 CREATE TABLE roles (
@@ -41,12 +33,12 @@ CREATE TABLE categories (
 
 -- Insertar las categorías en la tabla 'categories'
 INSERT INTO categories (category_name) VALUES
-('sports'),
-('health'),
-('gastronomy'),
-('entertainment'),
-('politics and economy'),
-('others');
+('Conocimiento'),
+('Digital Factory'),
+('Biotech'),
+('I+D+I'),
+('Negocios'),
+('Misiones Gamer');
 
 -- Crear la tabla 'Articles' para almacenar información de los artículos
 CREATE TABLE articles (
@@ -61,21 +53,33 @@ CREATE TABLE articles (
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
--- Crear la tabla 'Images' para almacenar las URL de las imágenes
-CREATE TABLE images (
-    image_id INT AUTO_INCREMENT PRIMARY KEY,
-    url VARCHAR(255),
-    article_id INT,
-    FOREIGN KEY (article_id) REFERENCES articles(article_id)
-);
+-- --Tabla para utilizar en la próxima etapa del proyecto:
+-- -- Crear la tabla 'Images' para almacenar las URL de las imágenes
+-- CREATE TABLE images (
+--     image_id INT AUTO_INCREMENT PRIMARY KEY,
+--     url VARCHAR(255),
+--     article_id INT,
+--     FOREIGN KEY (article_id) REFERENCES articles(article_id)
+-- );
 
--- Crear la tabla 'Comments' para almacenar los comentarios
-CREATE TABLE comments (
-    comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    content VARCHAR(255),
-    user_id INT,
-    article_id INT,
-    comment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (article_id) REFERENCES articles(article_id)
-);
+-- --Tabla para utilizar en la próxima etapa del proyecto:
+-- -- Crear la tabla 'Comments' para almacenar los comentarios
+-- CREATE TABLE comments (
+--     comment_id INT AUTO_INCREMENT PRIMARY KEY,
+--     content VARCHAR(255),
+--     user_id INT,
+--     article_id INT,
+--     comment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES users(user_id),
+--     FOREIGN KEY (article_id) REFERENCES articles(article_id)
+-- );
+
+-- tabla no utilizada por cambios en el proyecto
+-- -- Crear la tabla 'Persons' para almacenar información de las personas
+-- CREATE TABLE persons (
+--     person_id INT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(60),
+--     surname VARCHAR(60),
+--     address VARCHAR(100),
+--     phone_number VARCHAR(15)
+-- );

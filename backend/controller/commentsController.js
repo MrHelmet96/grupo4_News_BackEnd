@@ -1,3 +1,5 @@
+//Este controlador es para utilizar en la próxima etapa del proyecto:
+
 // Importa el módulo Express y crea una instancia de la aplicación.
 const express = require('express');
 const app = express();
