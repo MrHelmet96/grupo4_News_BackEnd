@@ -126,9 +126,9 @@ users_db.getAll = function (funCallback) {
 
 // Función para actualizar un usuario por su ID.
 users_db.update = function (user_id, updatedUser, funCallback) {
-    const claveCifrada = bcrypt.hashSync(updatedUser.password, 10);
-    const consulta = "UPDATE users SET email = ?, password = ?, person_id = ?, rol_id = ? WHERE user_id = ?";
-    const params = [updatedUser.email, claveCifrada, updatedUser.person_id, updatedUser.rol_id, user_id];
+   // const claveCifrada = bcrypt.hashSync(updatedUser.password, 10);
+    var consulta = "UPDATE users SET rol_id = ? WHERE user_id = ?";
+    var params = [updatedUser.rol_id, user_id];
 
     connection.query(consulta, params, (err, result) => {
         if (err) {

@@ -65,6 +65,7 @@ function createUser(req, res) {
 
 // Función para actualizar un usuario por su ID.
 function updateUser(req, res) {
+    
     const id_usuario_actualizar = req.params.user_id;
     const user = req.body;
 
