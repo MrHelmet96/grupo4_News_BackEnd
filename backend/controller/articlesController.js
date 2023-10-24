@@ -11,9 +11,22 @@ app.use(express.urlencoded({ extended: true }));
 const articles_db = require('../model/articles');
 
 
+
+
+
+
+
 // Definición de rutas y funciones para gestionar los artículos.
 app.post('/', crearArticulo);
-app.get('/', getAllArticulos);
+
+// app.get('/', getAllArticulos); // linea comentada para probar lo sgte:
+//probando security para proteger /admin en front
+const securityController = require("./securityController");
+app.get('/', securityController.verificarToken, getAllArticulos);
+// fin de prueba...
+
+
+
 app.get('/:article_id', getArticuloPorId);
 app.delete('/:article_id', borrarArticulo);
 app.put('/:article_id', actualizarArticulo);

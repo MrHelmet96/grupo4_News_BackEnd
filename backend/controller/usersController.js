@@ -27,7 +27,7 @@ app.get('/:id',findByID);
 
 // Función para obtener todos los usuarios.
 function getAll(req, res) {
-    users_db.getAll((err, resultado) => {
+    users_db.getAll(( err, resultado) => {
         if (err) {
             res.status(500).send(err);
         } else {

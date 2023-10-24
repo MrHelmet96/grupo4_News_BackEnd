@@ -30,11 +30,7 @@ CREATE TABLE users (
     email VARCHAR(60)not null unique,
     password VARCHAR(80),
     rol_id INT,
-<<<<<<< HEAD
     FOREIGN KEY (rol_id) REFERENCES roles(rol_id) 
-=======
-    FOREIGN KEY (rol_id) REFERENCES roles(rol_id)
->>>>>>> d8e1af74c05210258f6e4736f2b07faf0b5c7d1e
 );
 
 -- Crear la tabla 'Categories' para almacenar las categorías de los artículos

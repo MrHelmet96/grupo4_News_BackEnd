@@ -55,14 +55,22 @@ function login(req, res) {
 }
 
 // Función para verificar el token en las rutas protegidas.
+
+
 function verificarToken(req, res, next) {
   
+  //viene el token desde front en headers
+  const tokenFront = (req.headers.authorization); 
   
-  
-  if (req.headers["Authorization"]) {
+  if (tokenFront) {
+
+    // Extrae el token que viene desde el front sin las comillas
+    const token = tokenFront.replace(/^"(.*)"$/, '$1');
+
     try {
-      const token = JSON.stringify(req.headers["Authorization"]);
+      
       const verified = jwt.verify(token, "Grupo4Sectret");
+            
       if (verified) {
         next();
       } else {
@@ -80,6 +88,37 @@ function verificarToken(req, res, next) {
       message: "No posee token de autorizacion",
     });
   }
+
+
+
+
+
+
+
+  
+  // if (req.headers) {
+  //   try {
+  //     const token = (req.headers["Authorization"]);
+  //     const verified = jwt.verify(token, "Grupo4Sectret");
+      
+  //     console.log(req.headers)
+  //     if (verified) {
+  //       next();
+  //     } else {
+  //       res.status(403).send({
+  //         message: "Token invalido, permiso denegado.",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     res.status(403).send({
+  //       message: "Acceso Denegado err",
+  //     });
+  //   }
+  // } else {
+  //   res.status(403).send({
+  //     message: "No posee token de autorizacion",
+  //   });
+  // }
 }
 
 // Exporta el objeto 'app' y la función 'verificarToken' para su uso en otras partes del programa.
