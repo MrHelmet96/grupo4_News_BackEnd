@@ -65,7 +65,6 @@ app.use('/categories',categoriesController);
 app.use('/comments',commentsController);
 
 
-
 // Inicia el servidor en el puerto 8080 y maneja posibles errores.
 app.listen(8080, (err) => {
     if (err) {

@@ -22,11 +22,26 @@ app.get('/', securityController.verificarToken, getAll);
 app.post('/', createUser);
 app.put('/:user_id', updateUser);
 app.delete('/:user_id', borrar);
+app.get('/:id',findByID);
 
 
 // Función para obtener todos los usuarios.
 function getAll(req, res) {
     users_db.getAll((err, resultado) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.json(resultado);
+        }
+    });
+}
+
+// Función para traer un usuario por su ID.
+
+function findByID(req, res) {
+    let id = req.params.id
+    console.log(id)
+    users_db.findByID(id,( err, resultado) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -83,6 +98,7 @@ function borrar(req, res) {
         }
     });
 }
+
 
 // Exporta la aplicación 'app' para que pueda ser utilizada en otros archivos.
 module.exports = app;

@@ -59,6 +59,7 @@ users_db.create = function (users, funcallback) {
 // Función para buscar un usuario por su dirección de correo electrónico.
 users_db.findByEmail = function (mail, funCallback) {
     var consulta = 'SELECT * FROM users WHERE email = ?';
+
     connection.query(consulta, mail, function (err, result) { // En caso de error en la consulta.
         if (err) {
             funCallback(err);
@@ -79,6 +80,33 @@ users_db.findByEmail = function (mail, funCallback) {
         }
     });
 }
+
+users_db.findByID = function (id, funCallback) {
+    // Parsea el user_id como número
+    id = parseInt(id, 10);
+    console.log(id)
+
+    const consulta = 'SELECT * FROM users WHERE user_id = ?';
+
+    connection.query(consulta, [id], function (err, result) {
+        if (err) {
+            return funCallback(err);
+        }
+
+        
+
+        if (result.length > 0) {
+            return funCallback(null, result[0]); // Devuelve el primer resultado. 
+        }
+
+
+        return funCallback({
+            message: "No existe un usuario que coincida con el criterio de búsqueda",
+            detail: result
+        });
+    });
+};
+
 
 // Función getAll
 users_db.getAll = function (funCallback) {
