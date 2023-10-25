@@ -22,8 +22,8 @@ const articles_db = {};
 
 // Función para crear un nuevo artículo en la base de datos.
 articles_db.create = function (datos, funCallback) {
-    const consulta = "INSERT INTO articles (title, subtitle, publication_date, content, user_id, category_id) VALUES (?, ?, ?, ?, ?, ?);";
-    const params = [datos.title, datos.subtitle, datos.publication_date, datos.content, datos.user_id, datos.category_id];
+    const consulta = "INSERT INTO articles (title, subtitle, content, user_id, category_id) VALUES (?, ?, ?, ?, ?);";
+    const params = [datos.title, datos.subtitle,datos.content, datos.user_id, datos.category_id];
 
     connection.query(consulta, params, (err, result) => {
         if (err) {
