@@ -92,8 +92,8 @@ articles_db.delete = function (article_id, funCallback) {
 
 // Función para actualizar un artículo por su ID.
 articles_db.update = function (datos, article_id, funCallback) {
-    const consulta = "UPDATE articles SET title = ?, subtitle = ?, publication_date = ?, content = ?, user_id = ?, category_id = ? WHERE article_id = ?";
-    const params = [datos.title, datos.subtitle, datos.publication_date, datos.content, datos.user_id, datos.category_id, article_id];
+    const consulta = "UPDATE articles SET title = ?, subtitle = ?, content = ?, user_id = ?, category_id = ? WHERE article_id = ?";
+    const params = [datos.title, datos.subtitle, datos.content, datos.user_id, datos.category_id, article_id];
 
     connection.query(consulta, params, (err, result) => {
         if (err) {
