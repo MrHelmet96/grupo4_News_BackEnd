@@ -57,7 +57,7 @@ articles_db.getAll = function (funCallback) {
 
 // Función para obtener un artículo por su ID.
 articles_db.getById = function (article_id, funCallback) {
-    const consulta = 'SELECT * FROM articles WHERE article_id = ?';
+    var consulta = 'SELECT * FROM articles WHERE article_id = ?';
     connection.query(consulta, [article_id], function (err, rows) {
         if (err) {
             funCallback({
