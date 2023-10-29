@@ -2,7 +2,7 @@
     "database": {
         "host": "127.0.0.1",
         "user": "root",
-        "password": "2605",
+        "password": "1234admin",
         "database": "grupo4_noticias_db"
     },
     "server": {

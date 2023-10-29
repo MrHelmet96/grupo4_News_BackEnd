@@ -46,6 +46,7 @@ CREATE TABLE articles (
     title VARCHAR(255),
     subtitle VARCHAR(255),
     publication_date DATE,
+    img_url VARCHAR(255),
     content MEDIUMTEXT,
     user_id INT,
     category_id INT,
